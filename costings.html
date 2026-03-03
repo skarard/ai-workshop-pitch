@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing & Packages — AI Workshop Co.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0a0e27;
+  --deep-blue: #0f1538;
+  --accent: #3b82f6;
+  --accent-bright: #60a5fa;
+  --accent-glow: rgba(59, 130, 246, 0.15);
+  --white: #ffffff;
+  --gray-100: #f1f5f9;
+  --gray-300: #cbd5e1;
+  --gray-400: #94a3b8;
+  --gray-500: #64748b;
+  --gradient-1: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  --gradient-2: linear-gradient(135deg, #0f1538 0%, #1e1b4b 50%, #0f1538 100%);
+  --card-bg: rgba(15, 21, 56, 0.6);
+  --card-border: rgba(59, 130, 246, 0.12);
+  --green: #22c55e;
+  --transition: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+::selection {
+  background: rgba(59, 130, 246, 0.3);
+  color: var(--white);
+}
+
+::-moz-selection {
+  background: rgba(59, 130, 246, 0.3);
+  color: var(--white);
+}
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  background: var(--navy);
+  color: var(--white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 1.25rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(10, 14, 39, 0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--card-border);
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  background: var(--gradient-1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--gray-300);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover { color: var(--white); }
+
+.nav-cta {
+  background: var(--gradient-1) !important;
+  color: var(--white) !important;
+  padding: 0.6rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: transform 0.3s var(--transition), box-shadow 0.3s;
+}
+
+.nav-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.3);
+}
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--gray-300);
+  transition: all 0.3s;
+}
+
+/* ─── SHARED ─── */
+.container { max-width: 1200px; margin: 0 auto; width: 100%; }
+
+.section-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.section-subtitle {
+  font-size: 1.15rem;
+  color: var(--gray-400);
+  max-width: 640px;
+  line-height: 1.6;
+  margin-bottom: 3rem;
+}
+
+.highlight {
+  background: var(--gradient-1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2.25rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s var(--transition);
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--gradient-1);
+  color: var(--white);
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 40px rgba(59, 130, 246, 0.4);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--gray-300);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.05);
+  color: var(--white);
+}
+
+/* ─── HERO ─── */
+.pricing-hero {
+  padding: 10rem 2rem 5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.pricing-hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(ellipse at 50% 30%, rgba(59, 130, 246, 0.08) 0%, transparent 60%);
+}
+
+/* ─── PRICING TIERS ─── */
+.pricing-section {
+  padding: 4rem 2rem 6rem;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.price-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  padding: 2.5rem;
+  backdrop-filter: blur(10px);
+  position: relative;
+  transition: all 0.4s var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.price-card:hover {
+  border-color: rgba(59, 130, 246, 0.3);
+  transform: translateY(-6px);
+  box-shadow: 0 25px 70px rgba(0,0,0,0.3);
+}
+
+.price-card.featured {
+  border-color: rgba(59, 130, 246, 0.35);
+  background: linear-gradient(180deg, rgba(59, 130, 246, 0.08) 0%, var(--card-bg) 40%);
+}
+
+.price-card.featured::before {
+  content: 'Most Popular';
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.4rem 1.25rem;
+  background: var(--gradient-1);
+  color: var(--white);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-radius: 0 0 10px 10px;
+}
+
+.tier-name {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent-bright);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.tier-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.tier-desc {
+  color: var(--gray-400);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.tier-price {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 0.25rem;
+}
+
+.tier-price span {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--gray-500);
+}
+
+.tier-per {
+  color: var(--gray-500);
+  font-size: 0.85rem;
+  margin-bottom: 2rem;
+}
+
+.tier-features {
+  list-style: none;
+  margin-bottom: 2rem;
+  flex-grow: 1;
+}
+
+.tier-features li {
+  padding: 0.5rem 0;
+  font-size: 0.9rem;
+  color: var(--gray-300);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  line-height: 1.4;
+}
+
+.tier-features li::before {
+  content: '✓';
+  color: var(--green);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.price-card .btn {
+  width: 100%;
+  justify-content: center;
+  margin-top: auto;
+}
+
+/* ─── WHAT'S INCLUDED ─── */
+.included-section {
+  padding: 6rem 2rem;
+  background: var(--gradient-2);
+}
+
+.included-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.included-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 2rem;
+  backdrop-filter: blur(10px);
+  transition: all 0.4s var(--transition);
+}
+
+.included-card:hover {
+  border-color: rgba(59, 130, 246, 0.3);
+  transform: translateY(-3px);
+}
+
+.included-icon { font-size: 2rem; margin-bottom: 1rem; }
+.included-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+.included-card p { color: var(--gray-400); font-size: 0.9rem; line-height: 1.6; }
+
+/* ─── OUTPUTS ─── */
+.outputs-section {
+  padding: 6rem 2rem;
+}
+
+.outputs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.output-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.4s var(--transition);
+}
+
+.output-card:hover {
+  border-color: rgba(59, 130, 246, 0.3);
+  transform: translateY(-3px);
+}
+
+.output-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+.output-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
+.output-card p { color: var(--gray-400); font-size: 0.85rem; line-height: 1.5; }
+
+/* ─── ADD-ONS ─── */
+.addons-section {
+  padding: 6rem 2rem;
+  background: var(--gradient-2);
+}
+
+.addons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.addon-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 2rem;
+  backdrop-filter: blur(10px);
+  transition: all 0.4s var(--transition);
+}
+
+.addon-card:hover {
+  border-color: rgba(59, 130, 246, 0.3);
+  transform: translateY(-3px);
+}
+
+.addon-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+.addon-card .addon-price {
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: var(--gradient-1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.75rem;
+}
+.addon-card p { color: var(--gray-400); font-size: 0.9rem; line-height: 1.5; }
+
+/* ─── ROI ─── */
+.roi-section {
+  padding: 6rem 2rem;
+}
+
+.roi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.roi-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 2.5rem;
+  backdrop-filter: blur(10px);
+}
+
+.roi-number {
+  font-size: 3rem;
+  font-weight: 800;
+  background: var(--gradient-1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.1;
+  margin-bottom: 0.75rem;
+}
+
+.roi-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+.roi-card p { color: var(--gray-400); font-size: 0.9rem; line-height: 1.6; }
+
+/* ─── FAQ ─── */
+.faq-section {
+  padding: 6rem 2rem;
+  background: var(--gradient-2);
+}
+
+.faq-list {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--card-border);
+  padding: 1.5rem 0;
+}
+
+.faq-question {
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  transition: color 0.3s;
+}
+
+.faq-question:hover { color: var(--accent-bright); }
+
+.faq-question::after {
+  content: '+';
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--accent);
+  transition: transform 0.3s;
+  flex-shrink: 0;
+}
+
+.faq-item.open .faq-question::after {
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s var(--transition), padding 0.4s;
+}
+
+.faq-item.open .faq-answer {
+  max-height: 300px;
+  padding-top: 1rem;
+}
+
+.faq-answer p {
+  color: var(--gray-400);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* ─── CTA ─── */
+.cta-section {
+  padding: 8rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+}
+
+/* ─── FOOTER ─── */
+footer {
+  padding: 3rem 2rem;
+  text-align: center;
+  color: var(--gray-500);
+  font-size: 0.85rem;
+  border-top: 1px solid var(--card-border);
+}
+
+footer a { color: var(--accent); text-decoration: none; }
+
+/* ─── REVEAL ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s var(--transition), transform 0.8s var(--transition);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  .menu-toggle { display: flex; }
+  
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background: rgba(10, 14, 39, 0.98);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    padding: 5rem 2rem 2rem;
+    gap: 1.5rem;
+    transition: right 0.4s var(--transition);
+    border-left: 1px solid var(--card-border);
+  }
+  
+  .nav-links.open { right: 0; }
+  
+  .pricing-hero { padding: 8rem 1.25rem 3rem; }
+  
+  .pricing-grid,
+  .included-grid,
+  .outputs-grid,
+  .addons-grid,
+  .roi-grid { grid-template-columns: 1fr; }
+  
+  section, .pricing-section, .included-section,
+  .outputs-section, .addons-section, .roi-section,
+  .faq-section, .cta-section { padding-left: 1.25rem; padding-right: 1.25rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">AI Workshop Co.</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#included">What's Included</a></li>
+    <li><a href="#addons">Add-Ons</a></li>
+    <li><a href="#roi">ROI</a></li>
+    <li><a href="index.html" class="nav-cta">← Back to Pitch</a></li>
+  </ul>
+  <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="pricing-hero">
+  <div class="container">
+    <span class="section-label">Pricing & Packages</span>
+    <h1 class="section-title">Invest half a day.<br>Transform how your team <span class="highlight">builds.</span></h1>
+    <p class="section-subtitle" style="margin:0 auto 2rem;">Transparent pricing for hands-on AI workshops. No hidden fees. No long-term commitments required. Just results.</p>
+  </div>
+</section>
+
+<!-- ─── PRICING TIERS ─── -->
+<section class="pricing-section" id="pricing">
+  <div class="container">
+    <div class="pricing-grid">
+      <!-- STARTER -->
+      <div class="price-card reveal">
+        <div class="tier-name">Starter</div>
+        <div class="tier-title">Small Team Workshop</div>
+        <div class="tier-desc">Perfect for leadership teams and small squads ready to get hands-on with AI.</div>
+        <div class="tier-price">£2,500 <span>+ VAT</span></div>
+        <div class="tier-per">Half-day (4 hours) · Up to 8 participants</div>
+        <ul class="tier-features">
+          <li>Expert facilitator for the full session</li>
+          <li>Pre-workshop environment setup support</li>
+          <li>Real-time screen-sharing & unblocking</li>
+          <li>Build from your own codebase/projects</li>
+          <li>Personalised AI playbook for your team</li>
+          <li>Session recording highlights</li>
+          <li>14-day email follow-up support</li>
+        </ul>
+        <a href="mailto:hello@aiworkshop.co.uk?subject=Starter%20Workshop%20Enquiry" class="btn btn-secondary">Get Started</a>
+      </div>
+
+      <!-- GROWTH — FEATURED -->
+      <div class="price-card featured reveal">
+        <div class="tier-name">Growth</div>
+        <div class="tier-title">Department Workshop</div>
+        <div class="tier-desc">The sweet spot. Enough people to spark collaboration, small enough for deep hands-on work.</div>
+        <div class="tier-price">£4,200 <span>+ VAT</span></div>
+        <div class="tier-per">Half-day (4 hours) · Up to 15 participants</div>
+        <ul class="tier-features">
+          <li>Everything in Starter, plus:</li>
+          <li>Lead facilitator + support facilitator</li>
+          <li>Pre-workshop discovery call (60 mins)</li>
+          <li>Custom workshop agenda tailored to your team</li>
+          <li>Working prototypes as tangible outputs</li>
+          <li>Comprehensive AI playbook & roadmap</li>
+          <li>Full session recording</li>
+          <li>30-day follow-up support (Slack/email)</li>
+        </ul>
+        <a href="mailto:hello@aiworkshop.co.uk?subject=Growth%20Workshop%20Enquiry" class="btn btn-primary">Book This Package</a>
+      </div>
+
+      <!-- ENTERPRISE -->
+      <div class="price-card reveal">
+        <div class="tier-name">Enterprise</div>
+        <div class="tier-title">Organisation-Wide</div>
+        <div class="tier-desc">For companies going all-in on AI. Multiple sessions, multiple teams, maximum impact.</div>
+        <div class="tier-price">£7,500 <span>+ VAT</span></div>
+        <div class="tier-per">Half-day (4 hours) · Up to 25 participants</div>
+        <ul class="tier-features">
+          <li>Everything in Growth, plus:</li>
+          <li>Lead facilitator + 2 support facilitators</li>
+          <li>Two pre-workshop discovery sessions</li>
+          <li>Breakout tracks by role/department</li>
+          <li>Executive summary & recommendations report</li>
+          <li>Competitive AI landscape briefing</li>
+          <li>60-day follow-up support</li>
+          <li>Priority booking for future sessions</li>
+        </ul>
+        <a href="mailto:hello@aiworkshop.co.uk?subject=Enterprise%20Workshop%20Enquiry" class="btn btn-secondary">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WHAT'S INCLUDED ─── -->
+<section class="included-section" id="included">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">What's Included</span>
+      <h2 class="section-title">Everything your team needs.<br>Nothing they don't.</h2>
+    </div>
+    <div class="included-grid">
+      <div class="included-card reveal">
+        <div class="included-icon">🎯</div>
+        <h3>Expert Facilitation</h3>
+        <p>A seasoned AI practitioner who's run dozens of these sessions. They bounce between screens in real-time, unblocking your team and keeping momentum high throughout.</p>
+      </div>
+      <div class="included-card reveal">
+        <div class="included-icon">🔧</div>
+        <h3>Pre-Workshop Setup</h3>
+        <p>We handle environment configuration before the day. Everyone's laptop is ready to go from minute one — no time wasted on installation hell.</p>
+      </div>
+      <div class="included-card reveal">
+        <div class="included-icon">📖</div>
+        <h3>Custom Agenda</h3>
+        <p>Tailored to your industry, tools, and team's experience level. We run a discovery call to understand your specific challenges and build the session around them.</p>
+      </div>
+      <div class="included-card reveal">
+        <div class="included-icon">📦</div>
+        <h3>Take-Home Materials</h3>
+        <p>AI playbook, session recordings, prototype code, prompt libraries, and a personalised roadmap. Everything you need to keep building after the session ends.</p>
+      </div>
+      <div class="included-card reveal">
+        <div class="included-icon">📞</div>
+        <h3>Follow-Up Support</h3>
+        <p>Questions don't stop when the session ends. Get dedicated support via Slack or email for 14–60 days depending on your package.</p>
+      </div>
+      <div class="included-card reveal">
+        <div class="included-icon">🔐</div>
+        <h3>Security & Compliance</h3>
+        <p>We work within your security requirements. NDAs, data handling agreements, and on-premise options available for regulated industries.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TANGIBLE OUTPUTS ─── -->
+<section class="outputs-section" id="outputs">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">Tangible Outputs</span>
+      <h2 class="section-title">What your team walks away with</h2>
+      <p class="section-subtitle">Not certificates. Not vague "learnings." Real, tangible things your team built themselves.</p>
+    </div>
+    <div class="outputs-grid">
+      <div class="output-card reveal">
+        <div class="output-icon">🚀</div>
+        <h3>Working Prototypes</h3>
+        <p>Real, functional prototypes built from your own codebase during the session. Yours to keep, iterate on, and deploy.</p>
+      </div>
+      <div class="output-card reveal">
+        <div class="output-icon">📋</div>
+        <h3>AI Playbook</h3>
+        <p>Personalised to your team's workflows, tools, and opportunities. Practical next steps, not generic advice.</p>
+      </div>
+      <div class="output-card reveal">
+        <div class="output-icon">🎬</div>
+        <h3>Session Recordings</h3>
+        <p>Key moments and breakthroughs captured on video. Perfect for absent team members and future onboarding.</p>
+      </div>
+      <div class="output-card reveal">
+        <div class="output-icon">🗺️</div>
+        <h3>AI Roadmap</h3>
+        <p>Prioritised list of AI opportunities specific to your business, with estimated effort and impact scores.</p>
+      </div>
+      <div class="output-card reveal">
+        <div class="output-icon">💬</div>
+        <h3>Prompt Library</h3>
+        <p>Curated collection of effective prompts tailored to your industry and use cases.</p>
+      </div>
+      <div class="output-card reveal">
+        <div class="output-icon">🤝</div>
+        <h3>Ongoing Support</h3>
+        <p>Direct access to your facilitator for 14–60 days post-workshop. Questions answered, progress reviewed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ADD-ONS ─── -->
+<section class="addons-section" id="addons">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">Optional Add-Ons</span>
+      <h2 class="section-title">Go deeper. Go further.</h2>
+      <p class="section-subtitle">Extend the impact with optional enhancements tailored to your team's needs.</p>
+    </div>
+    <div class="addons-grid">
+      <div class="addon-card reveal">
+        <h3>Full-Day Workshop</h3>
+        <div class="addon-price">+£2,000</div>
+        <p>Extend to a full 8-hour day. Morning session covers fundamentals, afternoon dives deep into advanced prototyping and team-specific challenges. Includes lunch break and extended Q&A.</p>
+      </div>
+      <div class="addon-card reveal">
+        <h3>Executive Briefing</h3>
+        <div class="addon-price">+£1,200</div>
+        <p>60-minute private session with your C-suite before or after the workshop. Covers AI strategy, competitive landscape, risk assessment, and investment priorities. Includes written briefing document.</p>
+      </div>
+      <div class="addon-card reveal">
+        <h3>Monthly Retainer</h3>
+        <div class="addon-price">£2,500/mo</div>
+        <p>Ongoing AI advisory and support. Includes two 90-minute sessions per month, async Slack support, quarterly progress reviews, and priority booking for additional workshops.</p>
+      </div>
+      <div class="addon-card reveal">
+        <h3>Additional Facilitator</h3>
+        <div class="addon-price">+£800</div>
+        <p>Extra hands for larger groups. Ensures no one gets left behind. Recommended for groups over 12 participants to maintain the high-touch, screen-by-screen support quality.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ROI ─── -->
+<section class="roi-section" id="roi">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">Return on Investment</span>
+      <h2 class="section-title">The maths speaks for itself</h2>
+      <p class="section-subtitle">A single workshop pays for itself within weeks through accelerated adoption and reduced time-to-implementation.</p>
+    </div>
+    <div class="roi-grid">
+      <div class="roi-card reveal">
+        <div class="roi-number">50%</div>
+        <h3>Faster AI onboarding</h3>
+        <p>Teams that go through facilitated sessions reach productivity with AI tools in half the time compared to self-directed learning. That's weeks of salary costs saved per person.</p>
+      </div>
+      <div class="roi-card reveal">
+        <div class="roi-number">£15k+</div>
+        <h3>Saved per team annually</h3>
+        <p>Conservative estimate based on 10 team members saving 2 hours/week through AI-assisted workflows. At an average £75/hr blended rate, that's significant ROI from day one.</p>
+      </div>
+      <div class="roi-card reveal">
+        <div class="roi-number">Day 1</div>
+        <h3>Immediate capability</h3>
+        <p>No 6-month "AI transformation programme." Your team walks out on the same day with working prototypes and the skills to keep building. The ROI starts immediately.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:3rem; background:var(--card-bg); border:1px solid var(--card-border); border-radius:16px; padding:2.5rem;" class="reveal">
+      <h3 style="font-size:1.2rem; font-weight:700; margin-bottom:1rem;">💡 Put it this way…</h3>
+      <p style="color:var(--gray-400); font-size:1rem; line-height:1.8; max-width:800px;">
+        A team of 10 spending just <strong style="color:var(--white);">2 hours reading documentation and getting stuck</strong> costs you roughly <strong style="color:var(--white);">£1,500 in lost productivity</strong>. Do that across 3 weeks of gradual self-onboarding and you've spent <strong style="color:var(--white);">more than the workshop costs</strong> — and your team still isn't confident. One workshop. Half a day. Everyone's building. The question isn't whether you can afford it — it's whether you can afford to wait.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FAQ ─── -->
+<section class="faq-section" id="faq">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">Frequently Asked Questions</span>
+      <h2 class="section-title" style="text-align:center;">Common questions</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <div class="faq-question">Do participants need any coding experience?</div>
+        <div class="faq-answer"><p>Absolutely not. Our sessions are designed for people who've never written a line of code. CEOs, PMs, researchers — everyone builds. The AI tools we use mean you describe what you want in plain English and watch it come to life.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-question">Can we run the workshop remotely?</div>
+        <div class="faq-answer"><p>Yes. We run sessions both in-person and remotely via video call with screen sharing. Remote sessions work brilliantly — the facilitator can jump between participants' screens seamlessly. In-person sessions add the energy of being in a room together.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-question">What AI tools do you use in the workshop?</div>
+        <div class="faq-answer"><p>Primarily Claude Code and similar AI coding assistants. We focus on tools that let non-technical people build real, functional prototypes through natural language. We'll recommend the best tools for your specific use cases during the discovery call.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-question">How far in advance do we need to book?</div>
+        <div class="faq-answer"><p>We recommend 2–3 weeks minimum to allow for the discovery call and pre-workshop setup. However, we can accommodate urgent requests with as little as one week's notice, subject to availability.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-question">What about data security and NDAs?</div>
+        <div class="faq-answer"><p>We take security seriously. We're happy to sign NDAs, work within your data handling policies, and can structure sessions to avoid exposing sensitive code or data. For regulated industries, we offer on-premise options.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-question">Can we get an invoice and pay by bank transfer?</div>
+        <div class="faq-answer"><p>Of course. We issue proper VAT invoices and accept bank transfer (BACS), card payments, and purchase orders for enterprise clients. Payment terms are typically net 14 days.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ─── -->
+<section class="cta-section">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">Let's Go</span>
+      <h2 class="section-title">Ready to get your team<br><span class="highlight">building with AI?</span></h2>
+      <p class="section-subtitle" style="margin:0 auto 2.5rem; max-width:600px;">Drop us a line. We'll set up a discovery call, understand your team's needs, and design the perfect session.</p>
+      <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+        <a href="mailto:hello@aiworkshop.co.uk?subject=Workshop%20Enquiry" class="btn btn-primary">Book a Discovery Call →</a>
+        <a href="index.html" class="btn btn-secondary">← Back to Pitch Deck</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>© 2026 AI Workshop Co. — London, UK &nbsp;·&nbsp; <a href="index.html">Pitch Deck</a> &nbsp;·&nbsp; <a href="mailto:hello@aiworkshop.co.uk">hello@aiworkshop.co.uk</a></p>
+  </div>
+</footer>
+
+<script>
+// Mobile menu
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+menuToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => navLinks.classList.remove('open'));
+});
+
+// FAQ accordion
+document.querySelectorAll('.faq-question').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 60);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

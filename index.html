@@ -3,1001 +3,311 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Workshop — From Zero to Prototype in 2 Hours</title>
+<title>AI Workshops — Practical AI Training for Your Team</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --navy: #0a0e27;
-  --deep-blue: #0f1538;
-  --accent: #3b82f6;
-  --accent-bright: #60a5fa;
-  --accent-glow: rgba(59, 130, 246, 0.15);
-  --white: #ffffff;
-  --gray-100: #f1f5f9;
-  --gray-300: #cbd5e1;
-  --gray-400: #94a3b8;
-  --gray-500: #64748b;
-  --gradient-1: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-  --gradient-2: linear-gradient(135deg, #0f1538 0%, #1e1b4b 50%, #0f1538 100%);
-  --card-bg: rgba(15, 21, 56, 0.6);
-  --card-border: rgba(59, 130, 246, 0.12);
-  --transition: cubic-bezier(0.16, 1, 0.3, 1);
+  --accent: #0f7b6c;
+  --accent-light: #e6f4f1;
+  --text: #1a1a1a;
+  --text-secondary: #555;
+  --bg: #ffffff;
+  --border: #e5e5e5;
+  --surface: #fafafa;
 }
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-::selection {
-  background: rgba(59, 130, 246, 0.3);
-  color: var(--white);
-}
-
-::-moz-selection {
-  background: rgba(59, 130, 246, 0.3);
-  color: var(--white);
-}
-
-html {
-  scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
-  overflow-y: scroll;
-}
-
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  background: var(--navy);
-  color: var(--white);
-  line-height: 1.6;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.7;
+  font-size: 17px;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-  text-rendering: optimizeLegibility;
 }
 
-body::after {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* ─── NAV ─── */
 nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  padding: 1.25rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(10, 14, 39, 0.8);
-  backdrop-filter: blur(24px) saturate(180%);
-  border-bottom: 1px solid var(--card-border);
-  transition: all 0.4s var(--transition);
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 0;
 }
 
-nav.scrolled {
-  padding: 0.75rem 2rem;
-  background: rgba(10, 14, 39, 0.95);
-}
-
-.logo {
-  font-size: 1.25rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  background: var(--gradient-1);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.nav-links {
-  display: flex;
-  gap: 2rem;
-  align-items: center;
-  list-style: none;
-}
-
-.nav-links a {
-  color: var(--gray-300);
-  text-decoration: none;
-  font-size: 0.875rem;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  transition: color 0.3s;
-  position: relative;
-}
-
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--accent);
-  transition: width 0.3s var(--transition);
-}
-
-.nav-links a:hover { color: var(--white); }
-.nav-links a:hover::after { width: 100%; }
-
-.nav-cta {
-  background: var(--gradient-1) !important;
-  color: var(--white) !important;
-  padding: 0.6rem 1.5rem;
-  border-radius: 8px;
+nav .logo {
   font-weight: 600;
-  transition: transform 0.3s var(--transition), box-shadow 0.3s;
+  font-size: 1.05rem;
+  color: var(--text);
+  text-decoration: none;
 }
 
-.nav-cta:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.3);
+nav a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.95rem;
 }
 
-/* ─── SECTIONS ─── */
-section {
-  min-height: 100vh;
-  scroll-snap-align: start;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 6rem 2rem;
-  position: relative;
-  z-index: 1;
+nav a:hover {
+  color: var(--text);
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 680px;
   margin: 0 auto;
-  width: 100%;
+  padding: 0 1.5rem;
 }
 
-/* ─── HERO ─── */
+/* Hero */
 .hero {
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: 
-    radial-gradient(ellipse at 30% 40%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-    radial-gradient(ellipse at 70% 60%, rgba(139, 92, 246, 0.06) 0%, transparent 50%);
-  animation: pulse-glow 8s ease-in-out infinite;
-}
-
-@keyframes pulse-glow {
-  0%, 100% { opacity: 0.5; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.1); }
-}
-
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1.25rem;
-  background: var(--accent-glow);
-  border: 1px solid rgba(59, 130, 246, 0.25);
-  border-radius: 100px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--accent-bright);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 2rem;
-  animation: fade-in-up 0.8s var(--transition) both;
-}
-
-.hero-badge .dot {
-  width: 6px;
-  height: 6px;
-  background: #22c55e;
-  border-radius: 50%;
-  animation: blink 2s infinite;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
+  padding: 6rem 0 4rem;
 }
 
 .hero h1 {
-  font-size: clamp(2.5rem, 7vw, 5.5rem);
-  font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
+  font-size: 2.1rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
   margin-bottom: 1.5rem;
-  animation: fade-in-up 0.8s 0.15s var(--transition) both;
+  color: var(--text);
 }
 
-.hero h1 .highlight {
-  background: var(--gradient-1);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.hero p {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 560px;
 }
 
-.hero .subtitle {
-  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-  color: var(--gray-400);
-  max-width: 680px;
-  margin: 0 auto 3rem;
-  line-height: 1.5;
-  animation: fade-in-up 0.8s 0.3s var(--transition) both;
+/* Sections */
+section {
+  padding: 3rem 0;
 }
 
-.hero-cta-group {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-  animation: fade-in-up 0.8s 0.45s var(--transition) both;
+section h2 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.01em;
 }
 
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1rem 2.25rem;
-  border-radius: 12px;
+section p {
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 1rem 0;
+}
+
+/* Problems list */
+.problems {
+  list-style: none;
+  padding: 0;
+}
+
+.problems li {
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.problems li:last-child {
+  border-bottom: none;
+}
+
+.problems li span {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  display: block;
+  margin-top: 0.25rem;
+}
+
+/* Outputs */
+.outputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.output-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.output-card h3 {
   font-size: 1rem;
   font-weight: 600;
-  text-decoration: none;
-  transition: all 0.3s var(--transition);
-  border: none;
-  cursor: pointer;
+  margin-bottom: 0.4rem;
 }
 
-.btn-primary {
-  background: var(--gradient-1);
-  color: var(--white);
-  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+.output-card p {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  margin-bottom: 0;
 }
 
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 40px rgba(59, 130, 246, 0.4);
-}
-
-.btn-secondary {
-  background: transparent;
-  color: var(--gray-300);
-  border: 1px solid rgba(255,255,255,0.12);
-}
-
-.btn-secondary:hover {
-  background: rgba(255,255,255,0.05);
-  color: var(--white);
-  border-color: rgba(255,255,255,0.25);
-}
-
-@keyframes fade-in-up {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* ─── STATS BAR ─── */
-.stats-bar {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1px;
-  background: var(--card-border);
-  border-radius: 16px;
-  overflow: hidden;
-  margin-top: 5rem;
-  animation: fade-in-up 0.8s 0.6s var(--transition) both;
-}
-
-.stat {
-  background: var(--card-bg);
-  backdrop-filter: blur(10px);
-  padding: 2rem;
+/* CTA */
+.cta {
+  padding: 4rem 0 6rem;
   text-align: center;
 }
 
-.stat-number {
-  font-size: 2.5rem;
-  font-weight: 800;
-  background: var(--gradient-1);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  line-height: 1.2;
-}
-
-.stat-label {
-  font-size: 0.85rem;
-  color: var(--gray-400);
-  margin-top: 0.25rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-weight: 500;
-}
-
-/* ─── PROBLEM ─── */
-.problem { background: var(--gradient-2); }
-
-.section-label {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--accent);
-  font-weight: 700;
-  margin-bottom: 1rem;
-}
-
-.section-title {
-  font-size: clamp(2rem, 4.5vw, 3.5rem);
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
-  margin-bottom: 1.5rem;
-}
-
-.section-subtitle {
-  font-size: 1.15rem;
-  color: var(--gray-400);
-  max-width: 640px;
-  line-height: 1.6;
-  margin-bottom: 3rem;
-}
-
-.pain-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 1.5rem;
-}
-
-.pain-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 16px;
-  padding: 2rem;
-  backdrop-filter: blur(10px);
-  transition: all 0.4s var(--transition);
-  position: relative;
-  overflow: hidden;
-}
-
-.pain-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--gradient-1);
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.pain-card:hover {
-  border-color: rgba(59, 130, 246, 0.3);
-  transform: translateY(-4px);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.3), inset 0 1px 0 rgba(59, 130, 246, 0.1);
-}
-
-.pain-card:hover::before { opacity: 1; }
-
-.pain-icon {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.pain-card h3 {
-  font-size: 1.2rem;
-  font-weight: 700;
+.cta h2 {
+  font-size: 1.5rem;
   margin-bottom: 0.75rem;
-  letter-spacing: -0.01em;
 }
 
-.pain-card p {
-  color: var(--gray-400);
-  font-size: 0.95rem;
-  line-height: 1.6;
+.cta p {
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
 }
 
-/* ─── SOLUTION / HOW IT WORKS ─── */
-.solution-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 1rem;
-}
-
-.solution-step {
-  position: relative;
-  padding: 2.5rem;
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
-  transition: all 0.4s var(--transition);
-}
-
-.solution-step:hover {
-  border-color: rgba(59, 130, 246, 0.3);
-  transform: translateY(-4px);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.3), inset 0 1px 0 rgba(59, 130, 246, 0.1);
-}
-
-.step-number {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  background: var(--accent-glow);
-  border: 1px solid rgba(59, 130, 246, 0.25);
-  border-radius: 14px;
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: var(--accent-bright);
-  margin-bottom: 1.25rem;
-}
-
-.solution-step h3 {
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin-bottom: 0.75rem;
-  letter-spacing: -0.01em;
-}
-
-.solution-step p {
-  color: var(--gray-400);
-  font-size: 0.95rem;
-  line-height: 1.65;
-}
-
-/* ─── INSIGHTS / QUOTE ─── */
-.insight-section {
-  background: var(--gradient-2);
-  text-align: center;
-}
-
-.big-quote {
-  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
-  font-weight: 700;
-  line-height: 1.3;
-  letter-spacing: -0.02em;
-  max-width: 900px;
-  margin: 0 auto 2rem;
-  position: relative;
-}
-
-.big-quote::before {
-  content: '"';
-  position: absolute;
-  top: -2.5rem;
-  left: -1rem;
-  font-size: 6rem;
-  color: var(--accent);
-  opacity: 0.2;
-  font-family: Georgia, serif;
-  line-height: 1;
-}
-
-.quote-attribution {
-  color: var(--gray-500);
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-
-/* ─── INSIGHTS CARDS ─── */
-.insights-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 1.5rem;
-  margin-top: 4rem;
-  text-align: left;
-}
-
-.insight-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 16px;
-  padding: 2rem;
-  backdrop-filter: blur(10px);
-  transition: all 0.4s var(--transition);
-}
-
-.insight-card:hover {
-  border-color: rgba(59, 130, 246, 0.3);
-  transform: translateY(-4px);
-}
-
-.insight-number {
-  font-size: 3rem;
-  font-weight: 900;
-  background: var(--gradient-1);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  line-height: 1;
-  margin-bottom: 1rem;
-  opacity: 0.4;
-}
-
-.insight-card h3 {
-  font-size: 1.15rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-}
-
-.insight-card p {
-  color: var(--gray-400);
-  font-size: 0.95rem;
-  line-height: 1.6;
-}
-
-/* ─── OUTCOMES ─── */
-.outcomes-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-}
-
-.outcome-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 16px;
-  padding: 2rem;
-  text-align: center;
-  backdrop-filter: blur(10px);
-  transition: all 0.4s var(--transition);
-}
-
-.outcome-card:hover {
-  border-color: rgba(59, 130, 246, 0.3);
-  transform: translateY(-4px);
-}
-
-.outcome-icon {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.outcome-card h3 {
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-}
-
-.outcome-card p {
-  color: var(--gray-400);
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-
-/* ─── WHO ─── */
-.who-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-}
-
-.who-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 14px;
-  padding: 1.75rem;
-  text-align: center;
-  backdrop-filter: blur(10px);
-  transition: all 0.4s var(--transition);
-}
-
-.who-card:hover {
-  border-color: rgba(59, 130, 246, 0.3);
-  transform: translateY(-3px);
-}
-
-.who-emoji { font-size: 2.5rem; margin-bottom: 0.75rem; }
-.who-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.25rem; }
-.who-card p { color: var(--gray-400); font-size: 0.85rem; }
-
-/* ─── CTA FINAL ─── */
-.cta-final {
-  text-align: center;
-  background: var(--gradient-2);
-  position: relative;
-  overflow: hidden;
-}
-
-.cta-final::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
-  animation: pulse-glow 6s ease-in-out infinite;
-}
-
-.cta-final .section-title {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-}
-
-.cta-final .section-subtitle {
-  margin: 0 auto 2.5rem;
-  max-width: 600px;
-}
-
-/* ─── FOOTER ─── */
-footer {
-  padding: 3rem 2rem;
-  text-align: center;
-  color: var(--gray-500);
-  font-size: 0.85rem;
-  border-top: 1px solid var(--card-border);
-}
-
-footer a {
-  color: var(--accent);
+.cta a.button {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.85rem 2rem;
+  border-radius: 6px;
   text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: opacity 0.15s;
 }
 
-/* ─── MOBILE NAV ─── */
-.menu-toggle {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 4px;
+.cta a.button:hover {
+  opacity: 0.9;
 }
 
-.menu-toggle span {
+.cta .secondary-link {
   display: block;
-  width: 24px;
-  height: 2px;
-  background: var(--gray-300);
-  transition: all 0.3s;
+  margin-top: 1rem;
+  font-size: 0.92rem;
 }
 
-/* ─── SCROLL ANIMATIONS ─── */
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s var(--transition), transform 0.8s var(--transition);
+/* Footer */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 2rem 0;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
 }
 
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ─── RESPONSIVE ─── */
-@media (max-width: 768px) {
-  html { scroll-snap-type: none; }
-  
-  section { padding: 4rem 1.25rem; min-height: auto; }
-  
-  .menu-toggle { display: flex; }
-  
-  .nav-links {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 280px;
-    height: 100vh;
-    background: rgba(10, 14, 39, 0.98);
-    backdrop-filter: blur(20px);
-    flex-direction: column;
-    padding: 5rem 2rem 2rem;
-    gap: 1.5rem;
-    transition: right 0.4s var(--transition);
-    border-left: 1px solid var(--card-border);
-  }
-  
-  .nav-links.open { right: 0; }
-  
-  .stats-bar { margin-top: 3rem; }
-  .stat { padding: 1.25rem; }
-  .stat-number { font-size: 2rem; }
-  
-  .pain-grid,
-  .solution-grid,
-  .insights-grid,
-  .outcomes-grid { grid-template-columns: 1fr; }
-  
-  .who-grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (max-width: 480px) {
-  .who-grid { grid-template-columns: 1fr; }
-  .hero h1 { font-size: 2.2rem; }
+/* Responsive */
+@media (max-width: 600px) {
+  .hero { padding: 4rem 0 3rem; }
+  .hero h1 { font-size: 1.65rem; }
+  .outputs { grid-template-columns: 1fr; }
+  section { padding: 2rem 0; }
 }
 </style>
 </head>
 <body>
 
-<nav id="nav">
-  <div class="logo">AI Workshop Co.</div>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#problem">The Problem</a></li>
-    <li><a href="#solution">How It Works</a></li>
-    <li><a href="#insights">Insights</a></li>
-    <li><a href="#outcomes">Outcomes</a></li>
-    <li><a href="costings.html" class="nav-cta">View Pricing →</a></li>
-  </ul>
-  <button class="menu-toggle" id="menuToggle" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+<nav>
+  <a href="index.html" class="logo">AI Workshops</a>
+  <a href="costings.html">Pricing</a>
 </nav>
 
-<!-- ─── HERO ─── -->
-<section class="hero" id="hero">
-  <div class="container">
-    <div class="hero-badge"><span class="dot"></span> Now booking Q2 2026</div>
-    <h1>Your team is <span class="highlight">2 hours</span> away<br>from building with AI</h1>
-    <p class="subtitle">Live, hands-on workshops that take your people from zero AI experience to building real prototypes — in a single session.</p>
-    <div class="hero-cta-group">
-      <a href="costings.html" class="btn btn-primary">See Pricing & Packages</a>
-      <a href="#solution" class="btn btn-secondary">How It Works ↓</a>
-    </div>
-    <div class="stats-bar">
-      <div class="stat">
-        <div class="stat-number">2hrs</div>
-        <div class="stat-label">To first prototype</div>
-      </div>
-      <div class="stat">
-        <div class="stat-number">0</div>
-        <div class="stat-label">Coding experience needed</div>
-      </div>
-      <div class="stat">
-        <div class="stat-number">50%</div>
-        <div class="stat-label">Faster than self-onboarding</div>
-      </div>
-      <div class="stat">
-        <div class="stat-number">100%</div>
-        <div class="stat-label">Hands-on, real-world</div>
-      </div>
-    </div>
-  </div>
-</section>
+<div class="container">
 
-<!-- ─── PROBLEM ─── -->
-<section class="problem" id="problem">
-  <div class="container">
-    <div class="reveal">
-      <span class="section-label">The Problem</span>
-      <h2 class="section-title">AI adoption is stalling.<br>Not because of the tech.</h2>
-      <p class="section-subtitle">Your competitors are shipping AI features right now. Your team is still reading documentation. The gap isn't intelligence — it's experience.</p>
-    </div>
-    <div class="pain-grid">
-      <div class="pain-card reveal">
-        <div class="pain-icon">📚</div>
-        <h3>Death by documentation</h3>
-        <p>Teams spend weeks reading guides, watching tutorials, and attending webinars. They learn concepts but never build anything. Knowledge without practice is just trivia.</p>
-      </div>
-      <div class="pain-card reveal">
-        <div class="pain-icon">🧊</div>
-        <h3>The confidence freeze</h3>
-        <p>Smart people who've never touched AI tools feel like they're "not technical enough." They hesitate, delay, and defer to the one engineer on the team. The bottleneck grows.</p>
-      </div>
-      <div class="pain-card reveal">
-        <div class="pain-icon">⏳</div>
-        <h3>Months of "we should really…"</h3>
-        <p>Every leadership offsite ends with "we need an AI strategy." Six months later, nothing's changed. The intent is there. The activation isn't.</p>
-      </div>
-    </div>
-  </div>
-</section>
+  <section class="hero">
+    <h1>Your team is already behind on AI. Not because they're not smart&nbsp;— because no one's shown them how it actually helps their day-to-day.</h1>
+    <p>A practical, half-day workshop where your team builds real AI workflows using their own work. No theory. No demos. Just working solutions they'll use Monday morning.</p>
+  </section>
 
-<!-- ─── SOLUTION ─── -->
-<section id="solution">
-  <div class="container">
-    <div class="reveal">
-      <span class="section-label">The Solution</span>
-      <h2 class="section-title">A half-day that changes<br>how your team works forever</h2>
-      <p class="section-subtitle">Forget slides. Forget theory. Everyone opens their laptop, shares their screen, and builds something real — with an expert bouncing between screens in real-time.</p>
-    </div>
-    <div class="solution-grid">
-      <div class="solution-step reveal">
-        <div class="step-number">01</div>
-        <h3>Setup & Context</h3>
-        <p>We get everyone's environment configured and running in the first 30 minutes. No one gets left behind — the facilitator actively jumps between screens to unblock people in real-time.</p>
-      </div>
-      <div class="solution-step reveal">
-        <div class="step-number">02</div>
-        <h3>Build From Your Codebase</h3>
-        <p>No toy demos. Participants work on their own projects, their own problems. The "aha moment" hits completely differently when it's your actual work transforming in front of you.</p>
-      </div>
-      <div class="solution-step reveal">
-        <div class="step-number">03</div>
-        <h3>Prototype & Iterate</h3>
-        <p>By hour two, people who've never written code are building working prototypes. Screen-sharing, collaborating, getting unstuck together. It's messy, it's clunky — and it works.</p>
-      </div>
-      <div class="solution-step reveal">
-        <div class="step-number">04</div>
-        <h3>Ship & Strategise</h3>
-        <p>Walk out with working prototypes, a personalised AI playbook for your team, and a clear roadmap for what to build next. No vague takeaways — tangible outputs only.</p>
-      </div>
-    </div>
-  </div>
-</section>
+  <hr class="divider">
 
-<!-- ─── INSIGHTS ─── -->
-<section class="insight-section" id="insights">
-  <div class="container">
-    <div class="reveal">
-      <p class="big-quote">Get people in a room, share screens, and let them struggle together. It's clunky. It's messy. And it works way faster than any onboarding doc ever will.</p>
-      <p class="quote-attribution">— From sessions with CEOs, PMs, and research managers who'd never written a line of code</p>
-    </div>
-    <div class="insights-grid">
-      <div class="insight-card reveal">
-        <div class="insight-number">01</div>
-        <h3>Real-time unblocking halves onboarding time</h3>
-        <p>Following setup docs alone is brutal. Having someone bounce between screens and unblock people in real-time cuts the time to productivity in half.</p>
-      </div>
-      <div class="insight-card reveal">
-        <div class="insight-number">02</div>
-        <h3>Your own codebase makes it click</h3>
-        <p>The "aha moment" hits differently when you're building something real from your own codebase instead of a demo project. It stops being theoretical and becomes visceral.</p>
-      </div>
-      <div class="insight-card reveal">
-        <div class="insight-number">03</div>
-        <h3>From sticky notes to working prototypes</h3>
-        <p>Brainstorming sessions are transformed. Instead of a sticky note capturing an idea, you could have a real, working prototype of it in minutes.</p>
-      </div>
-    </div>
-  </div>
-</section>
+  <section>
+    <h2>The time you're actually losing</h2>
+    <p>These aren't hypothetical problems. They're what product managers and senior staff deal with every week.</p>
 
-<!-- ─── OUTCOMES ─── -->
-<section id="outcomes">
-  <div class="container">
-    <div class="reveal">
-      <span class="section-label">What You Walk Away With</span>
-      <h2 class="section-title">Not a certificate.<br>Real, tangible output.</h2>
-      <p class="section-subtitle">Every participant leaves with working prototypes and the confidence to keep building.</p>
-    </div>
-    <div class="outcomes-grid">
-      <div class="outcome-card reveal">
-        <div class="outcome-icon">🚀</div>
-        <h3>Working Prototypes</h3>
-        <p>Real code, built by your team, solving your actual problems. Not a demo — yours to keep and iterate on.</p>
-      </div>
-      <div class="outcome-card reveal">
-        <div class="outcome-icon">📋</div>
-        <h3>AI Playbook</h3>
-        <p>Personalised to your team's tools, workflows, and opportunities. A practical roadmap, not a generic report.</p>
-      </div>
-      <div class="outcome-card reveal">
-        <div class="outcome-icon">🎬</div>
-        <h3>Session Recordings</h3>
-        <p>Highlights from the session so absent team members can catch up and new joiners can onboard faster.</p>
-      </div>
-      <div class="outcome-card reveal">
-        <div class="outcome-icon">🤝</div>
-        <h3>30-Day Follow-Up</h3>
-        <p>Post-workshop support to answer questions, review progress, and help your team keep the momentum going.</p>
-      </div>
-    </div>
-  </div>
-</section>
+    <ul class="problems">
+      <li>
+        Writing reports, summaries, and updates from scratch
+        <span>AI can draft these in minutes from your notes and data — you just edit and refine.</span>
+      </li>
+      <li>
+        Manual data wrangling and formatting
+        <span>Pulling numbers from one tool, reformatting for another. AI handles the grunt work.</span>
+      </li>
+      <li>
+        Repetitive communication
+        <span>Status updates, stakeholder emails, meeting follow-ups — all variations on things you've written before.</span>
+      </li>
+      <li>
+        Research and competitive analysis
+        <span>What used to take days of reading and synthesising can happen in hours.</span>
+      </li>
+      <li>
+        Document review and process documentation
+        <span>Policy drafts, process docs, contract reviews — AI is genuinely good at this now.</span>
+      </li>
+      <li>
+        Context switching between tools
+        <span>AI can sit in the middle, connecting information across your existing workflow.</span>
+      </li>
+    </ul>
+  </section>
 
-<!-- ─── WHO IS THIS FOR ─── -->
-<section class="problem" id="who">
-  <div class="container">
-    <div class="reveal">
-      <span class="section-label">Who This Is For</span>
-      <h2 class="section-title">Built for the people who<br>actually make decisions</h2>
-      <p class="section-subtitle">This isn't a developer bootcamp. It's for the leaders, strategists, and operators who need to understand AI by doing — not by reading.</p>
-    </div>
-    <div class="who-grid">
-      <div class="who-card reveal">
-        <div class="who-emoji">👔</div>
-        <h3>CEOs & Founders</h3>
-        <p>See AI's potential first-hand</p>
-      </div>
-      <div class="who-card reveal">
-        <div class="who-emoji">📊</div>
-        <h3>Product Managers</h3>
-        <p>Prototype features in real-time</p>
-      </div>
-      <div class="who-card reveal">
-        <div class="who-emoji">🔬</div>
-        <h3>Research & Strategy</h3>
-        <p>Turn hypotheses into prototypes</p>
-      </div>
-      <div class="who-card reveal">
-        <div class="who-emoji">⚙️</div>
-        <h3>Operations Leaders</h3>
-        <p>Automate workflows live</p>
-      </div>
-      <div class="who-card reveal">
-        <div class="who-emoji">🎨</div>
-        <h3>Creative Directors</h3>
-        <p>Explore AI-assisted creation</p>
-      </div>
-      <div class="who-card reveal">
-        <div class="who-emoji">💼</div>
-        <h3>Consultancies</h3>
-        <p>Upskill your client teams</p>
-      </div>
-    </div>
-  </div>
-</section>
+  <hr class="divider">
 
-<!-- ─── FINAL CTA ─── -->
-<section class="cta-final">
-  <div class="container">
-    <div class="reveal">
-      <span class="section-label">Ready?</span>
-      <h2 class="section-title">Stop planning.<br>Start <span class="highlight">building.</span></h2>
-      <p class="section-subtitle">Book a session for your team. In four hours, they'll have built more with AI than most companies do in a quarter.</p>
-      <div class="hero-cta-group">
-        <a href="costings.html" class="btn btn-primary">View Pricing & Packages →</a>
-        <a href="mailto:hello@aiworkshop.co.uk" class="btn btn-secondary">Get In Touch</a>
+  <section>
+    <h2>What we actually do</h2>
+    <p>It's a half-day workshop. Your team brings their real work — actual documents, real tasks, genuine workflows — and we work through them together with AI tools.</p>
+    <p>No slide decks about "the future of work." No generic demos. We sit down with your team and solve their specific problems. By the end of the session, they have working solutions built from their own tasks.</p>
+    <p>We tailor every session to your team's roles and tools. A product team gets different workflows than an operations team. That's the point.</p>
+  </section>
+
+  <hr class="divider">
+
+  <section>
+    <h2>What your team walks away with</h2>
+    <div class="outputs">
+      <div class="output-card">
+        <h3>Working workflows</h3>
+        <p>2–3 AI workflows built from their own tasks that they can use immediately.</p>
+      </div>
+      <div class="output-card">
+        <h3>Prompt library</h3>
+        <p>A practical set of prompts tailored to their specific roles and responsibilities.</p>
+      </div>
+      <div class="output-card">
+        <h3>Confidence</h3>
+        <p>The ability to use AI tools independently, without needing to ask for help.</p>
+      </div>
+      <div class="output-card">
+        <h3>Clarity</h3>
+        <p>A clear picture of where AI saves them the most time — and where it doesn't.</p>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <hr class="divider">
+
+  <section class="cta">
+    <h2>Let's have a conversation about where your team is losing time.</h2>
+    <p>No pressure, no pitch. Just a straightforward chat about whether this makes sense for your team.</p>
+    <a href="mailto:richard@skarard.dev" class="button">Get in touch</a>
+    <a href="costings.html" class="secondary-link">View pricing →</a>
+  </section>
+
+</div>
 
 <footer>
   <div class="container">
-    <p>© 2026 AI Workshop Co. — London, UK &nbsp;·&nbsp; <a href="costings.html">Pricing</a> &nbsp;·&nbsp; <a href="mailto:hello@aiworkshop.co.uk">hello@aiworkshop.co.uk</a></p>
+    © 2025 AI Workshops
   </div>
 </footer>
 
-<script>
-// Nav scroll effect
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 50);
-});
-
-// Mobile menu
-const menuToggle = document.getElementById('menuToggle');
-const navLinks = document.getElementById('navLinks');
-menuToggle.addEventListener('click', () => {
-  navLinks.classList.toggle('open');
-});
-
-// Close menu on link click
-navLinks.querySelectorAll('a').forEach(a => {
-  a.addEventListener('click', () => navLinks.classList.remove('open'));
-});
-
-// Scroll reveal
-const reveals = document.querySelectorAll('.reveal');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      // Stagger siblings
-      const parent = entry.target.parentElement;
-      const siblings = Array.from(parent.querySelectorAll('.reveal'));
-      const idx = siblings.indexOf(entry.target);
-      setTimeout(() => {
-        entry.target.classList.add('visible');
-      }, idx * 100);
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
-
-reveals.forEach(el => observer.observe(el));
-</script>
 </body>
 </html>
